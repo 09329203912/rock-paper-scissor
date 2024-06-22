@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROCK-PAPER-SCISSORS</title>
+  <style>
+    h1 {
+      text-align: center;
+    }
+
+    body {
+      background-color: #E7F0DC;
+    }
+
+    .p1 {
+      float: left;
+      margin-left: 20%;
+    }
+
+    .p2 {
+      float: right;
+      margin-right: 20%;
+    }
+
+    #first {
+      font-size: 20px;
+    }
+
+    #second {
+      font-size: 20px;
+    }
+
+    .buttons {
+      margin-left: 250px;
+
+    }
+
+    .back {
+      width: 626px;
+      height: 481px;
+      margin-left: auto;
+      margin-right: auto;
+      background-image: url('back.jpg');
+      border-radius: 10px;
+      border-style: groove;
+
+    }
+
+    button {
+      margin-top: 200px;
+      margin-left: 34px;
+      padding: 10px;
+      font-family: Arial;
+      width: 70px;
+      border-radius: 7px;
+      cursor: pointer;
+      box-shadow: 0px 8px 8px 0px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); 
+    }
+
+    button:active {
+      transform: translateY(-2x);
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); 
+    }  
+
+    .score {
+      width: 175px;
+      height: 90px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #E0A75E;
+      border-radius: 10px;
+      box-shadow: 0px 8px 8px 0px;
+    }
+
+    #Player1 {
+      width: 80px;
+      width: 80px;
+    }
+
+    #Player2 {
+      width: 80px;
+      width: 80px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Rock-Paper-Scissor</h1>
+
+    <div class="back">
+      
+      <div class="p1">
+        <p id="first">Player 1</p>
+        <img id="Player1" src="" alt="Player">       
+      </div>
+
+      <div class="p2">
+        <p id="second">Player 2</p>
+        <img id="Player2" src="" alt="Computer">
+      </div>        
+        <button style="background-color: green;" onclick="Game()">START</button>
+        <button style="background-color: red;" class="reset" onclick="reset()">RESET</button>
+
+        <h2 style="text-align: center;">SCORE</h2>
+
+        <div class="score">
+          <p style="margin-left: 10px;">Player 1: <span id="win">0</span></p>
+          <p style="margin-left: 10px;">Player 2: <span id="loss">0</span></p>
+          <p style="margin-left: 10px;">Draws: <span id="draws">0</span></p>
+        </div>
+    </div>
+
+  </div>
+  <script>
+    const list = ["paper.png","rock.png","scissors.png"];
+
+        let win = 0;
+        let loss = 0;
+        let draws = 0;
+
+        function Game() {
+            const you = document.getElementById('Player1');
+            const enemy = document.getElementById('Player2');
+
+            const you1 = Math.floor(Math.random() * list.length);
+            const enemy1 = Math.floor(Math.random() * list.length);
+
+            const player1pick = list[you1];
+            const enemy1pick = list[enemy1];
+
+            you.src = player1pick;
+            enemy.src = enemy1pick;
+
+            if (player1pick === enemy1pick) {
+                draws++;
+            } else if (
+                (player1pick === "rock.png" && enemy1pick === "paper.png") ||
+                (player1pick === "paper.png" && enemy1pick === "rock.png") ||
+                (player1pick === "scissors.png" && enemy1pick === "paper.png")
+            ) {
+                win++;
+            } else {
+                loss++;
+            }
+
+            document.getElementById('win').textContent = win;
+            document.getElementById('loss').textContent = loss;
+            document.getElementById('draws').textContent = draws;
+        }
+
+        function reset() {
+            win = 0;
+            loss = 0;
+            draws = 0;
+
+            document.getElementById('win').textContent = win;
+            document.getElementById('loss').textContent = loss;
+            document.getElementById('draws').textContent = draws;
+
+            document.getElementById('Player1').src = "";
+            document.getElementById('Player2').src = "";
+        }
+  </script>
+
+</body>
+</html>
